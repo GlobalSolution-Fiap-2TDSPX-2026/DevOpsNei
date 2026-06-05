@@ -1,0 +1,80 @@
+version: "3.9"
+
+# =====================================================
+# Rede compartilhada entre App e Banco
+# =====================================================
+networks:
+  nei-network:
+    driver: bridge
+
+# =====================================================
+# Volume nomeado para persistência do Oracle
+# =====================================================
+volumes:
+  oracle-data:
+    name: oracle-data-rm564232
+
+# =====================================================
+# Serviços
+# =====================================================
+services:
+
+  # ---------------------------------------------------
+  # Container do Banco de Dados - Oracle XE 21c
+  # ---------------------------------------------------
+  db-rm564232:
+    image: gvenzl/oracle-xe:21-slim-faststart
+    container_name: db-rm564232
+    restart: unless-stopped
+
+    environment:
+      ORACLE_PASSWORD: 260407
+      ORACLE_DATABASE: FREEPDB1
+      APP_USER: rm564232
+      APP_USER_PASSWORD: 260407
+
+    ports:
+      - "1521:1521"
+
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+
+    networks:
+      - nei-network
+
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 120s
+
+  # ---------------------------------------------------
+  # Container da Aplicação Java - NEI Asteroid Monitor
+  # ---------------------------------------------------
+  app-rm564232:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app-rm564232
+    restart: unless-stopped
+
+    environment:
+      DB_URL: jdbc:oracle:thin:@db-rm564232:1521/FREEPDB1
+      DB_USERNAME: rm564232
+      DB_PASSWORD: 260407
+      NASA_API_KEY: s9gF1rPUkfxgXPIEvKZ4sc5SiLbaM5hKTQGmkCSM
+      JWT_SECRET: senhaSecreta123
+      JWT_EXPIRATION: 30
+      APP_PORT: 8080
+      SPRING_PROFILES_ACTIVE: prod
+
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      db-rm564232:
+        condition: service_healthy
+
+    networks:
+      - nei-network
