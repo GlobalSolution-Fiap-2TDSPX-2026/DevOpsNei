@@ -161,8 +161,6 @@ https://www.youtube.com/watch?v=Pi8j2iX6FMc
 
 # Integrantes
 
-# Integrantes
-
 | Nome | RM |
 |------|-----|
 |Nathan Gonçalves Pereira Mendes | RM564666 |
