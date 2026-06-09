@@ -1,6 +1,6 @@
-# ☄️ Global Solution — NASA Asteroid Monitoring API
+# Global Solution — NASA Asteroid Monitoring API
 
-## 📌 Sobre o Projeto
+## Sobre o Projeto
 
 Este projeto foi desenvolvido para a Global Solution FIAP com o objetivo de monitorar e armazenar informações sobre asteroides utilizando dados da API oficial da NASA (NeoWs — Near Earth Object Web Service).
 
@@ -8,7 +8,7 @@ A aplicação foi desenvolvida utilizando Java Spring Boot, Oracle Database, Doc
 
 ---
 
-# 🚀 Tecnologias Utilizadas
+# Tecnologias Utilizadas
 
 * Java 21
 * Spring Boot
@@ -23,7 +23,7 @@ A aplicação foi desenvolvida utilizando Java Spring Boot, Oracle Database, Doc
 
 ---
 
-# 🌎 Objetivo da Solução
+# Objetivo da Solução
 
 A solução permite:
 
@@ -36,7 +36,7 @@ A solução permite:
 
 ---
 
-# 🏗️ Arquitetura do Projeto
+# Arquitetura do Projeto
 
 O projeto foi organizado em camadas:
 
@@ -55,7 +55,7 @@ src/main/java
 
 ---
 
-# 🐳 Docker
+# Docker
 
 A aplicação foi preparada para execução utilizando Docker.
 
@@ -67,7 +67,7 @@ docker-compose up --build
 
 ---
 
-# ⚙️ Configuração da Aplicação
+# Configuração da Aplicação
 
 Arquivo:
 
@@ -92,7 +92,7 @@ jwt.expiration=30
 
 ---
 
-# 📡 Swagger
+# Swagger
 
 Após iniciar a aplicação:
 
@@ -102,7 +102,7 @@ http://localhost:8080/swagger-ui/index.html
 
 ---
 
-# 🔐 Autenticação JWT
+# Autenticação JWT
 
 A aplicação utiliza autenticação JWT com Spring Security.
 
@@ -114,7 +114,7 @@ POST /auth/login
 
 ---
 
-# ☄️ Endpoints Principais
+# Endpoints Principais
 
 ## NASA
 
@@ -137,7 +137,7 @@ POST /auth/login
 
 ---
 
-# 🗄️ Banco de Dados
+# Banco de Dados
 
 O projeto utiliza Oracle Database com persistência através do Spring Data JPA e Hibernate.
 
@@ -149,7 +149,7 @@ Principais entidades:
 
 ---
 
-# 📹 Vídeo da Apresentação
+# Vídeo da Apresentação
 
 Link do vídeo:
 
@@ -159,14 +159,20 @@ https://www.youtube.com/watch?v=Pi8j2iX6FMc
 
 ---
 
-# 👨‍💻 Integrantes
+# Integrantes
 
-* Nathan
-* [Adicionar restantes do grupo]
+# Integrantes
+
+| Nome | RM |
+|------|-----|
+|Nathan Gonçalves Pereira Mendes | RM564666 |
+|Guilherme Santos Fonseca | RM564232 |
+|Gustavo Araujo Da Silva | RM566526 |
+|Anthony De Souza Henriques | RM566188 |
 
 ---
 
-# 📂 Repositório GitHub
+# Repositório GitHub
 
 ```text id="76th1w"
 https://github.com/GlobalSolution-Fiap-2TDSPX-2026/DevOpsNei
@@ -174,7 +180,7 @@ https://github.com/GlobalSolution-Fiap-2TDSPX-2026/DevOpsNei
 
 ---
 
-# ✅ Funcionalidades Implementadas
+# Funcionalidades Implementadas
 
 * API REST com Spring Boot
 * Integração com API NASA
@@ -188,6 +194,6 @@ https://github.com/GlobalSolution-Fiap-2TDSPX-2026/DevOpsNei
 
 ---
 
-# 📘 Considerações Finais
+# Considerações Finais
 
 Este projeto foi desenvolvido com foco em arquitetura REST, integração com APIs externas, persistência de dados e boas práticas utilizando o ecossistema Spring.
