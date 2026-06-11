@@ -93,23 +93,7 @@ O projeto utiliza Docker para garantir portabilidade e padronização do ambient
 
 A aplicação segue o padrão de Arquitetura em Camadas (Layered Architecture).
 
-```text
-Cliente / Swagger
-        │
-        ▼
-Controllers
-        │
-        ▼
-Services
-        │
-        ├── Integração NASA NeoWs API
-        │
-        ▼
-Repositories
-        │
-        ▼
-Oracle Database
-```
+Arquitetura_GlobalSolution_Completa.drawio.png
 
 ### Controller Layer
 
