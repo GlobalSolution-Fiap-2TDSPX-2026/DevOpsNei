@@ -1,83 +1,262 @@
-# Global Solution — NASA Asteroid Monitoring API
+# ☄️ Global Solution — NASA Asteroid Monitoring API
 
-## Sobre o Projeto
+## 📌 Sobre o Projeto
 
 Este projeto foi desenvolvido para a Global Solution FIAP com o objetivo de monitorar e armazenar informações sobre asteroides utilizando dados da API oficial da NASA (NeoWs — Near Earth Object Web Service).
 
-A aplicação foi desenvolvida utilizando Java Spring Boot, Oracle Database, Docker e Swagger/OpenAPI.
+A aplicação foi construída utilizando Java Spring Boot, Oracle Database, Docker e Swagger/OpenAPI, aplicando conceitos de desenvolvimento backend, integração com APIs externas, segurança, persistência de dados e DevOps.
 
 ---
 
-# Tecnologias Utilizadas
+# 🎯 Objetivo da Solução
+
+O sistema foi criado para consumir dados reais fornecidos pela NASA, armazená-los em banco de dados Oracle e disponibilizá-los através de uma API REST segura e documentada.
+
+Principais objetivos:
+
+* Consumir dados da API NeoWs da NASA;
+* Armazenar informações sobre asteroides;
+* Gerenciar avaliações de risco;
+* Disponibilizar endpoints REST;
+* Implementar autenticação JWT;
+* Utilizar Docker para padronização do ambiente;
+* Documentar a API utilizando Swagger.
+
+---
+
+# 🚀 Tecnologias Utilizadas
+
+### Backend
 
 * Java 21
 * Spring Boot
 * Spring Security
-* JWT Authentication
 * Spring Data JPA
 * Hibernate
+* JWT Authentication
+
+### Banco de Dados
+
 * Oracle Database
-* Swagger OpenAPI
+
+### DevOps
+
 * Docker
-* Maven
+* Azure Virtual Machine
+
+### Documentação
+
+* Swagger OpenAPI
+
+### APIs Externas
+
+* NASA NeoWs API
 
 ---
 
-# Objetivo da Solução
+# ☁️ Infraestrutura e Deploy
 
-A solução permite:
+A aplicação foi implantada em uma Máquina Virtual (VM) hospedada na Microsoft Azure.
 
-* Consumir dados da API da NASA
-* Armazenar informações de asteroides
-* Gerenciar avaliações de risco
-* Disponibilizar endpoints REST
-* Documentar automaticamente a API com Swagger
-* Utilizar autenticação JWT
+A VM é responsável por:
+
+* Hospedar a aplicação;
+* Executar os containers Docker;
+* Disponibilizar a API para acesso externo;
+* Centralizar o ambiente de execução.
+
+A utilização da nuvem permite que a aplicação fique disponível remotamente para qualquer usuário autorizado.
 
 ---
 
-# Arquitetura do Projeto
+# 🐳 Containerização com Docker
 
-O projeto foi organizado em camadas:
+O projeto utiliza Docker para garantir portabilidade e padronização do ambiente.
 
-```text id="z6fln7"
-src/main/java
-│
-├── controller
-├── service
-├── repository
-├── model
-├── dto
-├── config
-├── security
-└── exception
+## Benefícios
+
+* Facilidade de deploy;
+* Isolamento dos serviços;
+* Reprodutibilidade do ambiente;
+* Redução de problemas de configuração.
+
+## Containers Utilizados
+
+| Container       | Função                   |
+| --------------- | ------------------------ |
+| Spring Boot API | Executa a aplicação Java |
+| Banco de Dados  | Persistência dos dados   |
+
+---
+
+# 🏗️ Arquitetura da Solução
+
+A aplicação segue o padrão de Arquitetura em Camadas (Layered Architecture).
+
+```text
+Cliente / Swagger
+        │
+        ▼
+Controllers
+        │
+        ▼
+Services
+        │
+        ├── Integração NASA NeoWs API
+        │
+        ▼
+Repositories
+        │
+        ▼
+Oracle Database
 ```
 
----
+### Controller Layer
 
-# Docker
+Responsável por receber as requisições HTTP e retornar respostas para os clientes.
 
-A aplicação foi preparada para execução utilizando Docker.
+Exemplos:
 
-## Executar containers
-
-```bash id="2woow5"
-docker-compose up --build
-```
+* NasaController
+* RiskAssessmentController
+* AuthController
 
 ---
 
-# Configuração da Aplicação
+### Service Layer
+
+Contém as regras de negócio da aplicação.
+
+Responsabilidades:
+
+* Consumo da API da NASA;
+* Processamento de dados;
+* Validações;
+* Avaliações de risco.
+
+---
+
+### Repository Layer
+
+Responsável pela comunicação com o banco utilizando Spring Data JPA.
+
+Operações:
+
+* Insert
+* Select
+* Update
+* Delete
+
+---
+
+### Database Layer
+
+Banco Oracle responsável pela persistência das informações.
+
+Principais entidades:
+
+* Asteroid
+* RiskAssessment
+* User
+
+---
+
+### Security Layer
+
+Implementada com Spring Security e JWT.
+
+Responsabilidades:
+
+* Autenticação;
+* Autorização;
+* Geração de Tokens;
+* Proteção dos endpoints.
+
+---
+
+# 📐 Diagrama de Arquitetura
+
+O projeto possui diagrama de arquitetura desenvolvido no Draw.io representando:
+
+* Cliente/Swagger
+* Controllers
+* Services
+* Repositories
+* Oracle Database
+* NASA NeoWs API
+* Azure VM
+* Docker
 
 Arquivo:
 
-```text id="v00ehm"
+```text
+docs/Arquitetura_GlobalSolution.drawio
+```
+
+---
+
+# 🔄 Fluxo da Aplicação
+
+```text
+Usuário
+   │
+   ▼
+Swagger / Cliente REST
+   │
+   ▼
+Controllers
+   │
+   ▼
+Services
+   │
+   ├── Consulta NASA NeoWs API
+   │
+   ▼
+Repositories
+   │
+   ▼
+Oracle Database
+```
+
+---
+
+# 🛰️ Integração com a NASA
+
+A aplicação realiza integração com a API oficial da NASA NeoWs.
+
+Funcionalidades:
+
+* Consulta de asteroides próximos à Terra;
+* Consumo de dados astronômicos reais;
+* Armazenamento local das informações;
+* Geração de avaliações de risco.
+
+---
+
+# 🔒 Segurança
+
+A API utiliza autenticação baseada em JWT (JSON Web Token).
+
+## Recursos Implementados
+
+* Login autenticado;
+* Geração de token JWT;
+* Proteção de endpoints;
+* Controle de acesso.
+
+---
+
+# ⚙️ Configuração da Aplicação
+
+Arquivo:
+
+```properties
 application.properties
 ```
 
 Exemplo:
 
-```properties id="5lq8qb"
+```properties
 spring.application.name=global-solution
 
 spring.datasource.url=jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL
@@ -86,42 +265,46 @@ spring.datasource.password=SUA_SENHA
 
 nasa.api.key=SUA_API_KEY
 
-jwt.secret=senhaSecreta
+jwt.secret=SEU_SEGREDO
 jwt.expiration=30
 ```
 
 ---
 
-# Swagger
+# 🐳 Executando com Docker
+
+Subir containers:
+
+```bash
+docker-compose up --build
+```
+
+Verificar containers:
+
+```bash
+docker ps
+```
+
+---
+
+# 📡 Documentação Swagger
 
 Após iniciar a aplicação:
 
-```text id="gbkmm7"
+```text
 http://localhost:8080/swagger-ui/index.html
 ```
 
 ---
 
-# Autenticação JWT
-
-A aplicação utiliza autenticação JWT com Spring Security.
-
-Endpoint:
-
-```text id="z0p3tr"
-POST /auth/login
-```
-
----
-
-# Endpoints Principais
+# ☄️ Principais Endpoints
 
 ## NASA
 
 | Método | Endpoint         |
 | ------ | ---------------- |
-| POST   | /nasa/sync/today |
 | POST   | /nasa/sync       |
+| POST   | /nasa/sync/today |
 
 ---
 
@@ -137,15 +320,61 @@ POST /auth/login
 
 ---
 
-# Banco de Dados
+## Authentication
 
-O projeto utiliza Oracle Database com persistência através do Spring Data JPA e Hibernate.
+| Método | Endpoint    |
+| ------ | ----------- |
+| POST   | /auth/login |
 
-Principais entidades:
+---
 
-* Asteroid
-* RiskAssessment
-* User
+# 📁 Estrutura do Projeto
+
+```text
+src/main/java
+│
+├── controller
+│
+├── service
+│
+├── repository
+│
+├── model
+│
+├── security
+│
+├── config
+│
+└── exception
+```
+
+---
+
+# 📊 Funcionalidades Implementadas
+
+✅ API REST com Spring Boot
+
+✅ Integração com NASA NeoWs
+
+✅ Oracle Database
+
+✅ Spring Data JPA
+
+✅ Hibernate
+
+✅ Swagger OpenAPI
+
+✅ Docker
+
+✅ JWT Authentication
+
+✅ CRUD Completo
+
+✅ Tratamento Global de Exceções
+
+✅ Arquitetura em Camadas
+
+✅ Deploy em Nuvem
 
 ---
 
@@ -170,28 +399,16 @@ https://www.youtube.com/watch?v=Pi8j2iX6FMc
 
 ---
 
-# Repositório GitHub
+# 📂 Repositório GitHub
 
-```text id="76th1w"
+```text
 https://github.com/GlobalSolution-Fiap-2TDSPX-2026/DevOpsNei
 ```
 
 ---
 
-# Funcionalidades Implementadas
+# 📘 Considerações Finais
 
-* API REST com Spring Boot
-* Integração com API NASA
-* Persistência Oracle
-* CRUD completo
-* Swagger/OpenAPI
-* Docker
-* JWT Authentication
-* Estrutura em camadas
-* Tratamento global de exceções
+Este projeto foi desenvolvido com foco na aplicação prática de conceitos de Engenharia de Software, APIs REST, Banco de Dados, Segurança, Cloud Computing e DevOps.
 
----
-
-# Considerações Finais
-
-Este projeto foi desenvolvido com foco em arquitetura REST, integração com APIs externas, persistência de dados e boas práticas utilizando o ecossistema Spring.
+A solução demonstra a integração entre tecnologias modernas do ecossistema Java e serviços externos, utilizando boas práticas de desenvolvimento e arquitetura de software.
