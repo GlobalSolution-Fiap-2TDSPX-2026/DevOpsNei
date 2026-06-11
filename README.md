@@ -93,7 +93,7 @@ O projeto utiliza Docker para garantir portabilidade e padronização do ambient
 
 A aplicação segue o padrão de Arquitetura em Camadas (Layered Architecture).
 
-Arquitetura_GlobalSolution_Completa.drawio.png
+![](Arquitetura_GlobalSolution_Completa.drawio.png)
 
 ### Controller Layer
 
